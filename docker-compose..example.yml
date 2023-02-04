@@ -1,0 +1,39 @@
+version: "3.3"
+services:
+
+  traefik:
+    image: "traefik:v2.4"
+    container_name: "traefik"
+    restart: always
+    command:
+      - "--log.level=DEBUG"
+      - "--api.insecure=true"
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.web.address=:80"
+    ports:
+      - "80:80"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+    networks:
+      - proxy
+
+  livewire-webserver:
+    container_name: livewire-webserver
+    image: antonioanerao/laravel:9.47.0
+    restart: always
+    networks:
+      - proxy
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./laravel/:/laravel
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=proxy"
+      - "traefik.http.routers.livewire.rule=Host(`livewire.docker.localhost`)"
+      - "traefik.http.routers.livewire.entrypoints=web"
+
+networks:
+  proxy:
+    external: true
