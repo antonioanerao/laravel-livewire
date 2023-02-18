@@ -3,12 +3,12 @@
 namespace App\Http\Livewire;
 
 use App\Http\Requests\UserRequest;
+use App\Models\User;
 use Livewire\Component;
 
 class Profile extends Component
 {
-    public string $name;
-    public string $email;
+    public User $user;
     public $success = [
         'status' => false,
         'msg' => 'Atualizado com sucesso'
@@ -24,12 +24,12 @@ class Profile extends Component
     }
 
     public function mount() {
-        $this->name = auth()->user()->name;
-        $this->email = auth()->user()->email;
+        $this->user = auth()->user();
     }
 
     public function updateProfile() {
-        auth()->user()->update($this->validate());
+        $this->validate();
+        $this->user->save();
         $this->success['status'] = true;
     }
 
