@@ -16,7 +16,7 @@
         <form method="POST" wire:submit.prevent="updateProfile">
             <div class="form-group">
                 <label classs="required" for="name">Name</label>
-                <input id="name" wire:model.defer="user.name" class="form-control {{ $errors->has('user.name') ? 'is-invalid' : '' }}">
+                <input id="name" wire:model.defer="user.name" wire:keydown="checkFields" class="form-control {{ $errors->has('user.name') ? 'is-invalid' : '' }}">
                 @if($errors->has('user.name'))
                     <div class="invalid-feedback">{{ $errors->first('user.name') }}</div>
                 @endif
@@ -24,7 +24,7 @@
 
             <div class="form-group">
                 <label classs="required" for="email">E-mail</label>
-                <input id="email" wire:model.defer="user.email" class="form-control {{ $errors->has('user.email') ? 'is-invalid' : '' }}">
+                <input id="email" wire:model.defer="user.email" wire:keydown="checkFields" class="form-control {{ $errors->has('user.email') ? 'is-invalid' : '' }}">
                 @if($errors->has('user.email'))
                     <div class="invalid-feedback">{{ $errors->first('user.email') }}</div>
                 @endif

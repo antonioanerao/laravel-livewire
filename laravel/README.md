@@ -58,3 +58,24 @@ No método de store/update chamar o _validate()_
 ``` php
 $this->validate();
 ```
+
+### Wire:keydown
+
+O método wire:keydown="methodName" permite executar uma ação enquanto eu digito em um input. Ex: Aplicar validação em tempo real.
+
+No input
+
+``` html
+<input wire:model.defer="user.email" wire:keydown="checkFields">
+@if($errors->has('user.email'))
+    <div class="invalid-feedback">{{ $errors->first('user.email') }}</div>
+@endif
+```
+
+No Componente do Livewire
+``` php
+public function checkFields()
+{
+    $this->validate();
+}
+```

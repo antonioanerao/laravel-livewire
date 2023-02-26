@@ -37,4 +37,14 @@ class Profile extends Component
     {
         return view('livewire.profile');
     }
+
+    /**
+     * Método para aplicar validação em tempo real com wire:keydown
+     *
+     * @return void
+     */
+    public function checkFields(): void
+    {
+        $this->validate();
+    }
 }
