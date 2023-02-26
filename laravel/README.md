@@ -79,3 +79,25 @@ public function checkFields()
     $this->validate();
 }
 ```
+
+### Método _mount()_ com parâmetro da URL pagar buscar usuário
+
+No Componente
+
+``` php
+public function mount() {
+    $this->user = User::find(request('user_id'));
+}
+```
+
+Na rota
+
+``` php
+
+//Redireciona o usuário após o login para a rota home passando o ID do usuário logado
+Route::get('home', function() {
+   return redirect(route('home', auth()->user()->getAuthIdentifier()));
+});
+
+Route::get('/home/{user_id}', [HomeController::class, 'index'])->name('home');
+```
