@@ -167,3 +167,29 @@ Na view apos o foreach (e o fim da table)
 ``` html
 {{ $products->links() }}
 ```
+
+### Barra de busca em tempo real
+
+No blade
+
+``` html
+<input wire:model="searchQuery" class="form-control">
+```
+
+No Componente
+``` php 
+public string $searchQuery = '';
+public int $currentPage;
+
+public function render()
+{
+    $this->searchQuery == '' ? $this->currentPage = 0 : $this->currentPage = 1;
+
+    $products = \App\Models\Product::when($this->searchQuery != '', function($query) {
+        $query->where('name', 'like', '%'.$this->searchQuery.'%');
+    })
+    ->paginate(10, ['*'], 'page', $this->currentPage);
+
+    return view('livewire.product', compact('products'));
+}
+```

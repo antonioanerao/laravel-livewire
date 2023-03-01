@@ -1,4 +1,16 @@
 <div>
+
+    <div class="card mt-2 mb-2">
+        <div class="card-body">
+            <div class="col-md-4">
+                <label>Search a product by name</label>
+                <div class="form-group">
+                    <input wire:model="searchQuery" class="form-control">
+                </div>
+            </div>
+        </div>
+    </div>
+
     <table class="table">
         <thead>
             <tr>
