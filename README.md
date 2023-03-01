@@ -1,8 +1,8 @@
 #### Versão da imagem do Nginx
-    1.21.6
+    1.23.3
 
 #### Versão do Laravel
-    8.12
+    9.x
 
 #### Versão do PHP
     8.2.1
