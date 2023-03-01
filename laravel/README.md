@@ -101,3 +101,15 @@ Route::get('home', function() {
 
 Route::get('/home/{user_id}', [HomeController::class, 'index'])->name('home');
 ```
+
+### Usando wire:click para retornar true|false
+
+``` php
+
+//No blade.php em algum button
+wire:click="$toggle('show')"
+
+//No Component do Livewire
+public $show = false;
+
+```

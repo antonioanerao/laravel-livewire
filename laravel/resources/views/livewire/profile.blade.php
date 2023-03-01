@@ -17,6 +17,13 @@
             <div class="form-group">
                 <label classs="required" for="name">Name</label>
                 <input id="name" wire:model.defer="user.name" wire:keydown="checkFields" class="form-control {{ $errors->has('user.name') ? 'is-invalid' : '' }}">
+                <button type="button" class="mt-2 btn btn-primary btn-sm" wire:click="$toggle('showHelp')">Show Help </button>
+                @if($showHelp)
+                    <div class="alert alert-info mb-2 mt-3">
+                        bla bla bla
+                    </div>
+                @endif
+
                 @if($errors->has('user.name'))
                     <div class="invalid-feedback">{{ $errors->first('user.name') }}</div>
                 @endif

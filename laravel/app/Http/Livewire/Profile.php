@@ -4,11 +4,13 @@ namespace App\Http\Livewire;
 
 use App\Http\Requests\UserRequest;
 use App\Models\User;
+use Illuminate\Contracts\View\View;
 use Livewire\Component;
 
 class Profile extends Component
 {
     public User $user;
+    public $showHelp = false;
     public $success = [
         'status' => false,
         'msg' => 'Atualizado com sucesso'
@@ -33,7 +35,7 @@ class Profile extends Component
         $this->success['status'] = true;
     }
 
-    public function render()
+    public function render(): View
     {
         return view('livewire.profile');
     }
