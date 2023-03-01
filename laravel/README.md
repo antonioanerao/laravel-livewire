@@ -93,7 +93,6 @@ public function mount() {
 Na rota
 
 ``` php
-
 //Redireciona o usuário após o login para a rota home passando o ID do usuário logado
 Route::get('home', function() {
    return redirect(route('home', auth()->user()->getAuthIdentifier()));
@@ -105,11 +104,51 @@ Route::get('/home/{user_id}', [HomeController::class, 'index'])->name('home');
 ### Usando wire:click para retornar true|false
 
 ``` php
-
 //No blade.php em algum button
 wire:click="$toggle('show')"
 
 //No Component do Livewire
 public $show = false;
+```
 
+### Adicionar evento e escutar evento para emitir um alerta
+
+No componente do evento um atributo para o contador, o listener e um method para fazer o increment do contador
+
+``` php
+public int $notificationsCount = 0;
+
+protected $listeners = [
+    'profileUpdated' => 'incrementNotificationsCount'
+];
+
+public function incrementNotificationsCount() {
+    $this->notificationsCount++;
+}
+```
+
+No componente que deve chamar o o listener (ao fim do codigo executado)
+
+``` php
+$this->emit('profileUpdated');
+```
+
+No arquivo principal do layout ou onde o evento devera ser chamado o codigo em js _window.livewire.on()_ deve ser
+chamado para escutar o evento quando ele for chamado para exibir a notificacao
+
+``` html
+<!-- CDN para o sweet alert funcionar -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<!-- Codigo JS que ficara escutando o evento -->
+<script>
+    window.livewire.on('profileUpdated', function() {
+        Swal.fire({
+            title: 'Profile Updated',
+            text: 'You have updated your profile',
+            icon: 'success',
+            confirmButtonText: 'Cool'
+        })
+    });
+</script>
 ```

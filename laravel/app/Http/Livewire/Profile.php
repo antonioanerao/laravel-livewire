@@ -33,6 +33,7 @@ class Profile extends Component
         $this->validate();
         $this->user->save();
         $this->success['status'] = true;
+        $this->emit('profileUpdated');
     }
 
     public function render(): View

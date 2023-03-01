@@ -70,6 +70,9 @@
                                     </form>
                                 </div>
                             </li>
+
+                            @livewire('notifications')
+
                         @endguest
                     </ul>
                 </div>
@@ -81,5 +84,17 @@
         </main>
     </div>
     @livewireScripts
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        window.livewire.on('profileUpdated', function() {
+            Swal.fire({
+                title: 'Profile Updated',
+                text: 'You have updated your profile',
+                icon: 'success',
+                confirmButtonText: 'Cool'
+            })
+        });
+    </script>
 </body>
 </html>
