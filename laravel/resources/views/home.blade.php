@@ -6,6 +6,10 @@
         <div class="col-md-8">
             @livewire('profile')
         </div>
+
+        <div class="col-md-8">
+            @livewire('product')
+        </div>
     </div>
 </div>
 @endsection

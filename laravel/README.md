@@ -152,3 +152,18 @@ chamado para escutar o evento quando ele for chamado para exibir a notificacao
     });
 </script>
 ```
+
+### Paginacao sem refresh da pagina
+
+No Componente
+
+``` php
+use WithPagination;
+protected $paginationTheme = 'bootstrap';
+```
+
+Na view apos o foreach (e o fim da table) 
+
+``` html
+{{ $products->links() }}
+```
