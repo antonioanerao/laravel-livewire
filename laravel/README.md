@@ -193,3 +193,11 @@ public function render()
     return view('livewire.product', compact('products'));
 }
 ```
+
+### Exibir aviso de informacoes sendo carregadas
+
+No componente que sera exibido apenas quando informacoes estiverem sendo carregadas do banco
+
+``` html
+<img wire:loading src="{{ asset('loading-gif.gif') }}">
+```
