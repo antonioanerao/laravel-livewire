@@ -8,9 +8,11 @@ use Illuminate\Contracts\View\View;
 class Notifications extends Component
 {
     public int $notificationsCount = 0;
+    public bool $deleted = false;
 
     protected $listeners = [
-        'profileUpdated' => 'incrementNotificationsCount'
+        'profileUpdated' => 'incrementNotificationsCount',
+        'productDeleted' => 'incrementNotificationsCount'
     ];
 
     public function incrementNotificationsCount() {

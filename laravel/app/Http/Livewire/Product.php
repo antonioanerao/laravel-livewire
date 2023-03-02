@@ -12,6 +12,13 @@ class Product extends Component
     public string $searchQuery = '';
     public int $currentPage;
 
+
+    public function deleteProduct($product_id)
+    {
+        \App\Models\Product::find($product_id)->delete();
+        $this->emit('productDeleted');
+    }
+
     public function render()
     {
         $this->searchQuery == '' ? $this->currentPage = 0 : $this->currentPage = 1;

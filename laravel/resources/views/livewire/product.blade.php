@@ -16,6 +16,7 @@
             <tr>
                 <td>Name</td>
                 <td>Desc</td>
+                <td>#</td>
             </tr>
         </thead>
 
@@ -24,6 +25,33 @@
                 <tr>
                     <td>{{ $product->name }}</td>
                     <td>{{ $product->description }}</td>
+                    <td>
+
+                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete-{{ $product->id }}">
+                        Delete
+                    </button>
+
+                    <div class="modal fade" id="delete-{{ $product->id }}" tabindex="-1" role="dialog" aria-labelledby="delete-{{ $product->id }}Label" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="delete-{{ $product->id }} Label">Delete product?</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    Are you sure you want to delete the product called {{ $product->name }}
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button wire:click="deleteProduct({{ $product->id }})" data-dismiss="modal" type="button" class="btn btn-danger">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    </td>
                 </tr>
             @empty
                 <tr>
@@ -33,4 +61,18 @@
         </tbody>
     </table>
     {{ $products->links() }}
+
+    @section('js')
+            <script>
+                window.livewire.on('productDeleted', function() {
+                Swal.fire({
+                    title: 'Product deleted',
+                    text: 'You have deleted a product',
+                    icon: 'success',
+                    confirmButtonText: 'Cool'
+                })
+            });
+            </script>
+    @endsection
 </div>
+
