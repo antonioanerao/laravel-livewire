@@ -11,7 +11,12 @@
         </div>
     </div>
 
+    <a href="{{ route('product.create') }}">
+        <button type="button" class="btn btn-primary mb-2 mt-2">Create Product</button>
+    </a>
+
     <table class="table">
+
         <thead>
             <tr>
                 <td>Name</td>
