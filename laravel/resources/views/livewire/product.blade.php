@@ -34,6 +34,12 @@
                     <td>{{ $product->category->name }}</td>
                     <td>
 
+                    <a href="{{ route('product.edit', $product->id) }}">
+                        <button type="button" class="btn btn-warning">
+                            Edit
+                        </button>
+                    </a>
+
                     <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete-{{ $product->id }}">
                         Delete
                     </button>

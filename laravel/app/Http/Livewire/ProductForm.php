@@ -3,14 +3,15 @@
 namespace App\Http\Livewire;
 
 use App\Http\Requests\ProductCreateRequest;
-use App\Http\Requests\UserRequest;
 use App\Models\Category;
+use Illuminate\Database\Eloquent\Collection;
 use Livewire\Component;
 use \App\Models\Product;
 
-class ProductCreate extends Component
+class ProductForm extends Component
 {
     public Product $product;
+    public Collection $categories;
 
     /**
      * Retorna as regras de validação do ProductCreateRequest
@@ -21,9 +22,10 @@ class ProductCreate extends Component
         return (new ProductCreateRequest())->rules();
     }
 
-    public function mount()
+    public function mount(Product $product)
     {
-        $this->product = new Product();
+        $this->categories = Category::all();
+        $this->product = $product;
     }
 
     public function store()
@@ -45,7 +47,6 @@ class ProductCreate extends Component
 
     public function render()
     {
-        $categories = Category::all();
-        return view('livewire.product-create', compact('categories'));
+        return view('livewire.product-create');
     }
 }

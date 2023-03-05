@@ -37,7 +37,7 @@
                 </div>
 
                 <div class="form-group mt-3">
-                    <button type="submit" class="btn btn-info">Create</button>
+                    <button type="submit" class="btn btn-info">Edit</button>
                 </div>
             </form>
 
