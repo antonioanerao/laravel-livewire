@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Http\Requests\ProductCreateRequest;
 use App\Http\Requests\UserRequest;
+use App\Models\Category;
 use Livewire\Component;
 use \App\Models\Product;
 
@@ -44,6 +45,7 @@ class ProductCreate extends Component
 
     public function render()
     {
-        return view('livewire.product-create');
+        $categories = Category::all();
+        return view('livewire.product-create', compact('categories'));
     }
 }

@@ -24,7 +24,14 @@ class ProductCreateRequest extends FormRequest
     public function rules()
     {
         return [
-            'product.name' => 'required', 'product.description' => 'required'
+            'product.name' => 'required', 'product.description' => 'required', 'product.category_id' => 'required'
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'product.category_id.required' => 'Choose one category'
         ];
     }
 }

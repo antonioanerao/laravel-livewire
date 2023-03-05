@@ -21,6 +21,7 @@
             <tr>
                 <td>Name</td>
                 <td>Desc</td>
+                <td>Category</td>
                 <td>#</td>
             </tr>
         </thead>
@@ -30,6 +31,7 @@
                 <tr>
                     <td>{{ $product->name }}</td>
                     <td>{{ $product->description }}</td>
+                    <td>{{ $product->category->name }}</td>
                     <td>
 
                     <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete-{{ $product->id }}">
