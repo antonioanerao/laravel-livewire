@@ -36,8 +36,29 @@
                     @endif
                 </div>
 
+                <div class="form-group mt-1">
+                    <label class="required" for="color">Color</label>
+                    @foreach(\App\Models\Product::COLOR_LIST as $key => $value)
+                        <input id="color" wire:model="product.color" type="radio" value="{{ $key }}"
+                            class="{{ $errors->has('product.color') ? 'is-invalid' : '' }}">
+                        {{ $value }}
+                    @endforeach
+                    @if($errors->has('product.color'))
+                        <div class="invalid-feedback">{{ $errors->first('product.color') }}</div>
+                    @endif
+                </div>
+
+                <div class="form-group mt-1">
+                    <label class="required" for="in_stock">In Stock</label>
+                    <input wire:model="product.in_stock" id="in_stock" type="checkbox" value="1"
+                            class="{{ $errors->has('product.in_stock') ? 'is-invalid' : '' }}">
+                    @if($errors->has('product.in_stock'))
+                        <div class="invalid-feedback">{{ $errors->first('product.in_stock') }}</div>
+                    @endif
+                </div>
+
                 <div class="form-group mt-3">
-                    <button type="submit" class="btn btn-info">Edit</button>
+                    <button type="submit" class="btn btn-info">Create</button>
                 </div>
             </form>
 

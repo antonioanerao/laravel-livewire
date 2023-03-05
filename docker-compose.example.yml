@@ -34,6 +34,37 @@ services:
       - "traefik.http.routers.livewire.rule=Host(`livewire.docker.localhost`)"
       - "traefik.http.routers.livewire.entrypoints=web"
 
+  mysql:
+    image: ubuntu/mysql:8.0-22.04_beta
+    container_name: "mysql"
+    restart: always
+    networks:
+      - proxy
+    environment:
+      MYSQL_DATABASE: livewire
+      MYSQL_USER: livewire
+      MYSQL_PASSWORD: livewire
+      MYSQL_RANDOM_ROOT_PASSWORD: '1'
+    volumes:
+      - mysql:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin
+    container_name: "phpmyadmin"
+    restart: always
+    networks:
+      - proxy
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=proxy"
+      - "traefik.http.routers.phpmyadmin.rule=Host(`phpmyadmin.docker.localhost`)"
+      - "traefik.http.routers.phpmyadmin.entrypoints=web"
+    environment:
+      - PMA_ARBITRARY=1
+
 networks:
   proxy:
     external: true
+
+volumes:
+  mysql:
