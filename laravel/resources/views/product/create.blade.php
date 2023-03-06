@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                @livewire('product-create')
+                @livewire('product-form')
             </div>
         </div>
     </div>
