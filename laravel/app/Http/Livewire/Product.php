@@ -26,7 +26,7 @@ class Product extends Component
 
         $products = \App\Models\Product::when($this->searchQuery != '', function($query) {
             $query->where('name', 'like', '%'.$this->searchQuery.'%');
-        })->with('category')
+        })
         ->paginate(10, ['*'], 'page', $this->currentPage);
 
         return view('livewire.product', compact('products'));

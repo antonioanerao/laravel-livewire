@@ -25,14 +25,14 @@
 
                 <div class="form-group">
                     <label class="required" for="category_id">Category</label>
-                    <select wire:model.defer="product.category_id" id="category_id" class="form-control {{ $errors->has('product.category_id') ? 'is-invalid' : '' }}">
+                    <select multiple wire:model="productCategories" id="category_id" class="form-control {{ $errors->has('productCategories') ? 'is-invalid' : '' }}">
                         <option value="">Pick a category</option>
                         @foreach($categories as $category)
                             <option value="{{ $category->id }}">{{ $category->name }}</option>
                         @endforeach
                     </select>
-                    @if($errors->has('product.category_id'))
-                        <div class="invalid-feedback">{{ $errors->first('product.category_id') }}</div>
+                    @if($errors->has('productCategories'))
+                        <div class="invalid-feedback">{{ $errors->first('productCategories') }}</div>
                     @endif
                 </div>
 

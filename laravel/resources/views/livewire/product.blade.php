@@ -31,7 +31,11 @@
                 <tr>
                     <td>{{ $product->name }}</td>
                     <td>{{ $product->description }}</td>
-                    <td>{{ $product->category->name }}</td>
+                    <td>
+                        @foreach($product->category as $category)
+                            {{ $category->name }} {{ $loop->last ? '' : '/'  }}
+                        @endforeach
+                    </td>
                     <td>
 
                     <a href="{{ route('product.edit', $product->id) }}">

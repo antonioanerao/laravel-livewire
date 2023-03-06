@@ -9,7 +9,7 @@ class Product extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'name', 'description', 'category_id', 'color', 'in_stock'
+        'name', 'description', 'color', 'in_stock'
     ];
 
     const COLOR_LIST = [
@@ -20,6 +20,6 @@ class Product extends Model
 
     public function category()
     {
-        return $this->hasOne(Category::class, 'id', 'category_id');
+        return $this->belongsToMany(Category::class);
     }
 }

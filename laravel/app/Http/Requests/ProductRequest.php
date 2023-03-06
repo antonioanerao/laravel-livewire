@@ -24,7 +24,7 @@ class ProductRequest extends FormRequest
     public function rules()
     {
         return [
-            'product.name' => 'required', 'product.description' => 'required', 'product.category_id' => 'required',
+            'product.name' => 'required', 'product.description' => 'required', 'productCategories' => 'required|array',
             'product.color' => 'nullable', 'product.in_stock' => 'nullable'
         ];
     }
@@ -32,7 +32,7 @@ class ProductRequest extends FormRequest
     public function messages()
     {
         return [
-            'product.category_id.required' => 'Choose one category'
+            'productCategories.required' => 'Choose one category'
         ];
     }
 }
