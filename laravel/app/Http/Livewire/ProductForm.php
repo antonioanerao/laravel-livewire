@@ -7,14 +7,18 @@ use App\Models\Category;
 use Illuminate\Database\Eloquent\Collection;
 use Livewire\Component;
 use \App\Models\Product;
+use Livewire\WithFileUploads;
 
 class ProductForm extends Component
 {
+    use WithFileUploads;
     public Product $product;
     public $productCategories;
+    public $photo;
     public Collection $categories;
     public $rules;
     public $messages;
+    public $isUploading = false;
 
     public function mount(Product $product)
     {
@@ -28,6 +32,10 @@ class ProductForm extends Component
     public function store()
     {
         $this->validate();
+        if($this->photo) {
+            $filename = $this->photo->store('products', 'public');
+            $this->product->photo = $filename;
+        }
         $this->product->save();
         $this->product->category()->sync($this->productCategories);
         return redirect(route('home'))->with('success', 'success');

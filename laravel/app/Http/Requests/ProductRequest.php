@@ -25,7 +25,7 @@ class ProductRequest extends FormRequest
     {
         return [
             'product.name' => 'required', 'product.description' => 'required', 'productCategories' => 'required|array',
-            'product.color' => 'nullable', 'product.in_stock' => 'nullable'
+            'product.color' => 'nullable', 'product.in_stock' => 'nullable', 'photo' => 'image|nullable'
         ];
     }
 

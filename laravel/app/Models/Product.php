@@ -9,7 +9,7 @@ class Product extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'name', 'description', 'color', 'in_stock'
+        'name', 'description', 'color', 'in_stock', 'photo'
     ];
 
     const COLOR_LIST = [

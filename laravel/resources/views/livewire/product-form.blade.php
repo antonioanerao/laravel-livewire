@@ -6,6 +6,32 @@
             </div>
 
             <form method="POST" wire:submit.prevent="store">
+                <div class="form-group"
+                     x-data="{ isUploading: false, progress: 0 }"
+                     x-on:livewire-upload-start="isUploading = true"
+                     x-on:livewire-upload-finish="isUploading = false"
+                     x-on:livewire-upload-error="isUploading = false"
+                     x-on:livewire-upload-progress="progress = $event.detail.progress"
+                >
+                    <label class="required" for="photo">Photo</label>
+
+                    @if($photo)
+                        Photo Preview:
+                        <img src="{{ $photo->temporaryUrl() }}">
+                    @endif
+
+                    <input wire:model.defer="photo" type="file"
+                           class="form-control {{ $errors->has('photo') ? 'is-invalid' : '' }}" >
+
+                    <div wire:loading wire:target="photo">
+                        <progress min="1" max="100" x-bind:value="progress"></progress>
+                    </div>
+
+                    @if($errors->has('photo'))
+                        <div class="invalid-feedback">{{ $errors->first('photo') }}</div>
+                    @endif
+                </div>
+
                 <div class="form-group">
                     <label class="required" for="name">Name</label>
                     <input id="name" wire:model.defer="product.name" class="form-control {{ $errors->has('product.name') ? 'is-invalid' : '' }}">
@@ -58,8 +84,11 @@
                 </div>
 
                 <div class="form-group mt-3">
-                    <button type="submit" class="btn btn-info">Create</button>
+                    <button type="submit" class="btn btn-info">
+                        {{ request()->route()->uri() == 'product/{product}/edit' ? 'Update' : 'Create' }}
+                    </button>
                 </div>
+
             </form>
 
         </div>

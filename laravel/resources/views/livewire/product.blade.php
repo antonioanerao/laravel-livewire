@@ -19,6 +19,7 @@
 
         <thead>
             <tr>
+                <td>Image</td>
                 <td>Name</td>
                 <td>Desc</td>
                 <td>Category</td>
@@ -29,6 +30,11 @@
         <tbody>
             @forelse($products as $product)
                 <tr>
+                    <td>
+                        @if($product->photo)
+                            <img src="/storage/{{ $product->photo }}" width="50" alt="{{ $product->name }}">
+                        @endif
+                    </td>
                     <td>{{ $product->name }}</td>
                     <td>{{ $product->description }}</td>
                     <td>
