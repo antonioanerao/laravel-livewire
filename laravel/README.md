@@ -201,3 +201,13 @@ No componente que sera exibido apenas quando informacoes estiverem sendo carrega
 ``` html
 <img wire:loading src="{{ asset('loading-gif.gif') }}">
 ```
+
+### Auto refresh em components
+
+Adicione um _wire:poll_ no seu componente como no exemplo
+
+``` html
+<div class="card-body" wire:poll.3s>
+    <!-- stuff -->
+</div>
+```
