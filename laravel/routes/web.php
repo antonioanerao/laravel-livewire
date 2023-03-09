@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProjectController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,3 +24,6 @@ Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::resource('product', ProductController::class);
+
+Route::get('dropdown', [ProjectController::class, 'dropdowns'])->name('dropdowns');
+Route::post('dropdown', [ProjectController::class, 'postDropdowns'])->name('dropdowns.submit');

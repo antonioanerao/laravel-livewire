@@ -72,6 +72,9 @@
                                     </form>
                                 </div>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('dropdowns') }}">{{ __('Dropdowns') }}</a>
+                            </li>
 
                             @livewire('notifications')
 

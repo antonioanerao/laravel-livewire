@@ -10,10 +10,7 @@ class Notifications extends Component
     public int $notificationsCount = 0;
     public bool $deleted = false;
 
-    protected $listeners = [
-        'profileUpdated' => 'incrementNotificationsCount',
-        'productDeleted' => 'incrementNotificationsCount'
-    ];
+
 
     public function incrementNotificationsCount() {
         $this->notificationsCount++;

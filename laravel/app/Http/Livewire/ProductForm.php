@@ -38,7 +38,7 @@ class ProductForm extends Component
         }
         $this->product->save();
         $this->product->category()->sync($this->productCategories);
-        return redirect(route('home'))->with('success', 'success');
+        //return redirect(route('home'))->with('success', 'success');
     }
 
     public function render()
