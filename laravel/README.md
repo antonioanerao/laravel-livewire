@@ -211,3 +211,11 @@ Adicione um _wire:poll_ no seu componente como no exemplo
     <!-- stuff -->
 </div>
 ```
+
+### Usando prefetch para carregar dados antes de clicar no link
+
+No blade
+
+``` html
+<button wire:click.prefetch="getPrice">Get Price</button>
+```

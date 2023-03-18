@@ -27,3 +27,5 @@ Route::resource('product', ProductController::class);
 
 Route::get('dropdown', [ProjectController::class, 'dropdowns'])->name('dropdowns');
 Route::post('dropdown', [ProjectController::class, 'postDropdowns'])->name('dropdowns.submit');
+
+Route::get('bitcoin-price', [HomeController::class, 'bitcoinPrice'])->name('bitcoin.price');
