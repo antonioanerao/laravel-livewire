@@ -20,7 +20,7 @@ services:
 
   livewire-webserver:
     container_name: livewire-webserver
-    image: antonioanerao/laravel:9.47.0
+    image: antonioanerao/laravel:1.0.1
     restart: always
     networks:
       - proxy
